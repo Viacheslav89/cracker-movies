@@ -10,17 +10,14 @@
         </div>
       </div>
 
-      <div class="details__loader" v-if="movieDetailsStore.isLoading">
-        <img src="../assets/logo/loader.svg" alt="" />
+      <div class="movies__loader" v-if="moviesStore.isLoading">
+        <img src="../assets/logo/loader.svg" alt="Загрузка" />
       </div>
 
-      <div
-        v-else-if="
-          movieDetailsStore.currentMovie && !movieDetailsStore.isLoading
-        "
-      >
-        <MovieCard :movie="movieDetailsStore.currentMovie" />
+      <div v-if="currentMovie">
+        <MovieCard :movie="currentMovie" />
       </div>
+
       <p class="details__message" v-else>
         К сожалению по вашему запросу ничего не найдено...
       </p>
@@ -34,22 +31,22 @@ import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 
 import MovieCard from "@/components/MovieCard.vue";
-import { useMovieDetailsStore } from "@/stores/useMovieDetailsStore";
 import { useMoviesStore } from "@/stores/useMoviesStore";
-
+import type { Movie } from "@/type";
+import { computed } from "vue";
 
 const route = useRoute();
 const router = useRouter();
-
-const movieDetailsStore = useMovieDetailsStore();
 const moviesStore = useMoviesStore();
 
-
-movieDetailsStore.fetchMovieDelails(+route.params.id);
+const currentMovie = computed(() => {
+  const id = Number(route.params.id);
+  return moviesStore.moviesList?.find((movie: Movie) => movie.id === id);
+});
 
 const goToMovieList = () => {
   router.push({ name: "MovieList" });
-  moviesStore.moviesList = null;
+  moviesStore.moviesList = [];
 };
 </script>
 
@@ -58,12 +55,12 @@ const goToMovieList = () => {
   &__control {
     border-bottom: 1px solid #c4c4c4;
     margin-bottom: 40px;
+    padding-bottom: 22px;
   }
 
   &__link-wrapper {
     cursor: pointer;
     width: 176px;
-    padding-bottom: 22px;
     display: flex;
     justify-content: space-between;
   }

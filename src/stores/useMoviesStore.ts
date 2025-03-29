@@ -15,12 +15,10 @@ export const useMoviesStore = defineStore("movies", () => {
         "https://mashroom-movies-api.netlify.app/api/movies"
       );
       moviesList.value = response.data.data;
-      console.log(moviesList.value);
     } catch (error) {
       console.log(error);
     } finally {
       isLoading.value = false;
-      console.log(isLoading.value);
     }
   };
 
@@ -28,9 +26,9 @@ export const useMoviesStore = defineStore("movies", () => {
     if (!moviesList.value) return [];
     const sortedMovies = [...moviesList.value];
     switch (selectedOption) {
-      case "one":
+      case "title":
         return sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
-      case "two":
+      case "year":
         return sortedMovies.sort((a, b) => a.year - b.year);
       default:
         return sortedMovies;

@@ -1,6 +1,5 @@
 <template>
   <div class="layout">
-
     <header class="layout__header">
       <h1 class="layout__title">#movienow</h1>
     </header>
@@ -8,7 +7,6 @@
     <main class="layout__content">
       <slot />
     </main>
-
   </div>
 </template>
 
@@ -41,6 +39,7 @@
   &__content {
     margin: 0 auto;
     max-width: 1400px;
+    padding: 0 10px;
   }
 }
 </style>
