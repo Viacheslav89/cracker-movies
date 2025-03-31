@@ -25,13 +25,11 @@ import { useMoviesStore } from "@/stores/useMoviesStore";
 import MovieCard from "@/components/MovieCard.vue";
 import MainLayout from "@/components/MainLayout.vue";
 import SortMovieControl from "@/components/SortMovieControl.vue";
-import { onMounted, computed } from "vue";
+import { computed } from "vue";
 
 const moviesStore = useMoviesStore();
 
-onMounted(() => {
-  moviesStore.fetchMovies();
-});
+moviesStore.fetchMovies();
 
 const sortedMovies = computed(() => {
   return moviesStore.getMoviesList(moviesStore.selectedOption);
