@@ -3,7 +3,6 @@
     <div class="movies">
       <div class="movies__header">
         <h3 class="movies__title">Фильмы</h3>
-
         <SortMovieControl />
       </div>
 
