@@ -1,8 +1,8 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import MovieList from "@/views/MovieList.vue";
 
 const router = createRouter({
-  history: createWebHashHistory('/cracker-movies/'),
+  history: createWebHistory('/cracker-movies/'),
   routes: [
     {
       path: "/",
