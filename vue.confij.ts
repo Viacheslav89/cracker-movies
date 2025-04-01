@@ -1,5 +1,3 @@
-module.exports = { 
-    publicPath: process.env.NODE_ENV === 'production' 
-      ? '/movies/' 
-      : '/' 
-  }
+module.exports = {
+  publicPath: process.env.NODE_ENV === "production" ? "/cracker-movies/" : "/",
+};
