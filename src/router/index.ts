@@ -2,14 +2,15 @@ import { createRouter, createWebHistory } from "vue-router";
 import MovieList from "@/views/MovieList.vue";
 
 const router = createRouter({
-  history: createWebHistory("/cracker-movies/"),
+  history: createWebHistory("/movies/"),
   routes: [
     {
       path: "/",
-      redirect: "/movies",
+      redirect: { name: 'MovieList' },
     },
     {
       path: "/movies",
+      // path: "/cracker-movies",
       name: "MovieList",
       component: MovieList,
     },
